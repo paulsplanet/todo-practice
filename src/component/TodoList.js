@@ -8,11 +8,12 @@ const Todobox = styled.div`
     overflow-y: auto;
 `;
 
-const TodoList = () => {
+const TodoList = ({ todos }) => {
     return(
         <Todobox className="TodoList">
-            <TodoListItem />
-            <TodoListItem />
+            {todos.map(todo => (
+                <TodoListItem todo={todo} key={todo.id} />
+            ))}
         </Todobox>
     )
 };

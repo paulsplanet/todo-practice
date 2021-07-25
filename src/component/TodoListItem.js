@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-
 const TodoItem = styled.div`
     padding: 1rem;
     display: flex;
@@ -37,12 +36,15 @@ const Box = styled.span`
     margin: 0 0.8rem 0 0;
 `;
 
-const TodoListItem = () => {
+const TodoListItem = ({ todo }) => {
+    const { text, checked } = todo;
     return (
         <TodoItem className="TodoListItem">
             <Checkbox className="checkbox">
-                <Box>🔲</Box>
-                <div className="text">TODO</div>
+                {!checked ? (<Box>🔲</Box>) : (<Box>✅ </Box>)}
+                {checked ? (<div style={{textDecoration: "line-through"}}>{text}</div>) :
+                (<div>{text}</div>)}
+                
             </Checkbox>
             <Remove className="remove">✖</Remove>
         </TodoItem>
