@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 
 const Insert = styled.form`
@@ -34,10 +34,22 @@ const Button = styled.button`
     }
 `;
 
-const TodoInsert = () => {
+const TodoInsert = ({ onInsert }) => {
+    const [value, setValue] = useState();
+
+    const onChange = useCallback(e => {
+        setValue(e.target.value)
+    }, []); 
+
+    const onSubmit = useCallback(e => {
+        onInsert(value);
+        setValue("");
+        e.preventDefault();
+    }, [onInsert, value])
+
     return(
-        <Insert className="TodoInsert">
-            <Input placeholder="type your todo" />
+        <Insert className="TodoInsert" onSubmit={onSubmit} >
+            <Input placeholder="type your todo" value={value} onChange={onChange} />
             <Button type="submit">➕</Button>
         </Insert>
     )

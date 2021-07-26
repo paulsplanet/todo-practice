@@ -36,17 +36,17 @@ const Box = styled.span`
     margin: 0 0.8rem 0 0;
 `;
 
-const TodoListItem = ({ todo }) => {
-    const { text, checked } = todo;
+const TodoListItem = ({ todo, onRemove }) => {
+    const { text, checked, id } = todo;
     return (
         <TodoItem className="TodoListItem">
             <Checkbox className="checkbox">
                 {!checked ? (<Box>🔲</Box>) : (<Box>✅ </Box>)}
-                {checked ? (<div style={{textDecoration: "line-through"}}>{text}</div>) :
+                {checked ? (<div style={{textDecoration: "line-through"}} >{text}</div>) :
                 (<div>{text}</div>)}
                 
             </Checkbox>
-            <Remove className="remove">✖</Remove>
+            <Remove className="remove" onClick={() => onRemove(id)}>✖</Remove>
         </TodoItem>
     )
 }
