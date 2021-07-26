@@ -36,11 +36,11 @@ const Box = styled.span`
     margin: 0 0.8rem 0 0;
 `;
 
-const TodoListItem = ({ todo, onRemove }) => {
+const TodoListItem = ({ todo, onRemove, onToggle }) => {
     const { text, checked, id } = todo;
     return (
         <TodoItem className="TodoListItem">
-            <Checkbox className="checkbox">
+            <Checkbox className="checkbox" onClick={() => onToggle(id)}>
                 {!checked ? (<Box>🔲</Box>) : (<Box>✅ </Box>)}
                 {checked ? (<div style={{textDecoration: "line-through"}} >{text}</div>) :
                 (<div>{text}</div>)}
