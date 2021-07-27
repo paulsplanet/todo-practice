@@ -5,6 +5,10 @@ const TodoItem = styled.div`
     padding: 1rem;
     display: flex;
     align-items: center;
+    
+`;
+
+const Out =styled.div`
     &:nth-child(even) {
         background-color: #c7ecee;
     }
@@ -36,9 +40,10 @@ const Box = styled.span`
     margin: 0 0.8rem 0 0;
 `;
 
-const TodoListItem = ({ todo, onRemove, onToggle }) => {
+const TodoListItem = ({ todo, onRemove, onToggle, style }) => {
     const { text, checked, id } = todo;
     return (
+        <Out className="TodoListItem-virtualized" style={style} >
         <TodoItem className="TodoListItem">
             <Checkbox className="checkbox" onClick={() => onToggle(id)}>
                 {!checked ? (<Box>🔲</Box>) : (<Box>✅ </Box>)}
@@ -48,6 +53,7 @@ const TodoListItem = ({ todo, onRemove, onToggle }) => {
             </Checkbox>
             <Remove className="remove" onClick={() => onRemove(id)}>✖</Remove>
         </TodoItem>
+        </Out>
     )
 }
 
